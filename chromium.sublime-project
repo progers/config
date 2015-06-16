@@ -1,0 +1,36 @@
+{
+    "folders":
+    [
+        {
+            "folder_exclude_patterns":
+            [
+                "LayoutTests/platform"
+            ],
+            "path": "src/third_party/WebKit"
+        },
+        {
+            "path": "src/skia"
+        },
+        {
+            "path": "src/third_party/skia/src"
+        },
+        {
+            "path": "src/cc"
+        },
+        {
+            "path": "src/webkit/glue"
+        },
+        {
+            "path": "src/content"
+        },
+        {
+            "path": "src/third_party/trace-viewer"
+        },
+        {
+            "path": "src/tools"
+        },
+        {
+            "path": "src/ui"
+        }
+    ]
+}
