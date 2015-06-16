@@ -25,10 +25,10 @@ alias rtd='${WEBKIT_HOME}/Tools/Scripts/run-webkit-tests --debug -f --no-retry-f
 alias rtr='${WEBKIT_HOME}/Tools/Scripts/run-webkit-tests --release -f --no-retry-failures'
 
 # Build aliases: Build {Chrome, Tests} {Debug, Release}
-alias bcd='time ninja -j ${GOMAJS} -C ${CHROME_ROOT}/src/out/Debug chrome'
-alias bcr='time ninja -j ${GOMAJS} -C ${CHROME_ROOT}/src/out/Release chrome'
-alias btd='time ninja -j ${GOMAJS} -C ${CHROME_ROOT}/src/out/Debug blink_tests'
-alias btr='time ninja -j ${GOMAJS} -C ${CHROME_ROOT}/src/out/Release blink_tests'
+alias bcd='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Debug chrome'
+alias bcr='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Release chrome'
+alias btd='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Debug blink_tests'
+alias btr='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Release blink_tests'
 alias ba='bcd && bcr && btd && btr' # Build all
 
 # No-goma aliases
