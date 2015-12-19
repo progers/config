@@ -13,7 +13,7 @@ CHROMIUM_ROOT=${HOME}/Desktop/chromium
 if [ ! -d ${CHROMIUM_ROOT} ]; then
     CHROMIUM_ROOT=/ssd/chromium
     if [ ! -d ${CHROMIUM_ROOT} ]; then
-        echo "CHROMIUM_ROOT not found, you need to update ~/custom.bashrc"
+        echo "CHROMIUM_ROOT not found, you need to update ~/bashrc"
     fi
 fi
 WEBKIT_HOME=${CHROMIUM_ROOT}/src/third_party/WebKit

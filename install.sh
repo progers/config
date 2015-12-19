@@ -1,43 +1,77 @@
 #!/bin/bash
 
 # Install script for:
-#    custom .bashrc/.bash_profile
-#    custom .screenrc
-#    custom .vimrc
+#    ~/bashrc which is run from .bashrc/.bash_profile
+#        This preserves existing (e.g., set by corp policy) .bashrc/.bash_profile settings.
+#    ~/.screenrc
+#    ~/.vimrc
 
-if [ ! -f custom.bashrc ] ; then
-    echo "custom.bashrc not found. Run install.sh from the same directory as custom.bashrc"
+if [ ! -f bashrc ] ; then
+    echo "bashrc not found. Run install.sh from the same directory as bashrc"
     exit
 fi
 
 INSTALL_CUSTOM_BASHRC=1
-if [ -f ${HOME}/custom.bashrc ] ; then
-    DIFF=`diff -u ${HOME}/custom.bashrc custom.bashrc`
+if [ -f ${HOME}/bashrc ] ; then
+    DIFF=`diff -u ${HOME}/bashrc bashrc`
     if [[ !  -z  $DIFF  ]] ; then
         echo "{$DIFF}"
-        read -p "Overwrite custom.bashrc? y/n: " -n 1 -r
+        read -p "Overwrite bashrc? y/n: " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]] ; then
             INSTALL_CUSTOM_BASHRC=0
         fi
     fi
 fi
-
 if [ $INSTALL_CUSTOM_BASHRC -eq 1 ] ; then
-    echo "Updating ${HOME}/custom.bashrc..."
-    cp custom.bashrc ${HOME}/custom.bashrc
+    echo "Updating ${HOME}/bashrc..."
+    cp bashrc ${HOME}/bashrc
 
     DEFAULT_BASH_INIT="${HOME}/.bashrc"
     if [[ $OSTYPE == *"darwin"* ]] ; then
         DEFAULT_BASH_INIT="${HOME}/.bash_profile"
     fi
-    SOURCE_LINE="if [ -f ${HOME}/custom.bashrc ] ; then source ${HOME}/custom.bashrc ; fi # Pull in custom bash settings."
+    SOURCE_LINE="if [ -f ${HOME}/bashrc ] ; then source ${HOME}/bashrc ; fi # Custom bash settings."
     if grep -Fq "${SOURCE_LINE}" ${DEFAULT_BASH_INIT} ; then
-        echo "custom.bashrc already hooked in ${DEFAULT_BASH_INIT}"
+        echo "${HOME}/bashrc already run from ${DEFAULT_BASH_INIT}"
     else
-        echo "Adding hook to pull in custom.bashrc from ${DEFAULT_BASH_INIT}..."
+        echo "Adding line to run ${HOME}/bashrc from ${DEFAULT_BASH_INIT}..."
         echo "${SOURCE_LINE}" >> ${DEFAULT_BASH_INIT}
     fi
+fi
+
+INSTALL_CUSTOM_SCREENRC=1
+if [ -f ${HOME}/.screenrc ] ; then
+    DIFF=`diff -u ${HOME}/.screenrc screenrc`
+    if [[ !  -z  $DIFF  ]] ; then
+        echo "{$DIFF}"
+        read -p "Overwrite ~/.screenrc? y/n: " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]] ; then
+            INSTALL_CUSTOM_SCREENRC=0
+        fi
+    fi
+fi
+if [ $INSTALL_CUSTOM_SCREENRC -eq 1 ] ; then
+    echo "Updating ${HOME}/.screenrc..."
+    cp screenrc ${HOME}/.screenrc
+fi
+
+INSTALL_CUSTOM_VIMRC=1
+if [ -f ${HOME}/.vimrc ] ; then
+    DIFF=`diff -u ${HOME}/.vimrc vimrc`
+    if [[ !  -z  $DIFF  ]] ; then
+        echo "{$DIFF}"
+        read -p "Overwrite ~/.vimrc? y/n: " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]] ; then
+            INSTALL_CUSTOM_VIMRC=0
+        fi
+    fi
+fi
+if [ $INSTALL_CUSTOM_VIMRC -eq 1 ] ; then
+    echo "Updating ${HOME}/.vimrc..."
+    cp vimrc ${HOME}/.vimrc
 fi
 
 echo "Done"
