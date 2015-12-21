@@ -5,6 +5,7 @@
             "folder_exclude_patterns":
             [
                 "LayoutTests/platform",
+                // Workaround https://github.com/SublimeTextIssues/Core/issues/927.
                 "LayoutTests/http/tests/misc/resources"
             ],
             "path": "Desktop/chromium/src/third_party/WebKit"
