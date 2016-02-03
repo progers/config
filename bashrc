@@ -63,11 +63,15 @@ alias bcd='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Debug chrome'
 alias bcr='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Release chrome'
 alias btd='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Debug blink_tests cc_unittests'
 alias btr='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Release blink_tests cc_unittests'
+alias bad='btd && bcd' # Build all debug
+alias bar='btr && bcr' # Build all release
 alias ba='bcd && bcr && btd && btr' # Build all
 
-# No-goma aliases
+# Build aliases without goma
 alias bcdng='GOMA_DISABLED=true bcd'
 alias bcrng='GOMA_DISABLED=true bcr'
 alias btdng='GOMA_DISABLED=true btd'
 alias btrng='GOMA_DISABLED=true btr'
-alias bang='GOMA_DISABLED=true ba' # Build all, no goma.
+alias badng='btdng && bcdng' # Build all debug, no goma
+alias barng='btrng && bcrng' # Build all release, no goma
+alias bang='GOMA_DISABLED=true ba' # Build all, no goma
