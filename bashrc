@@ -16,6 +16,9 @@ fi
 
 alias gitundolastcommit='git reset --soft HEAD~1'
 
+# List branches by date
+alias bd="git for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads | sed -e 's-refs/heads/--'"
+
 # Chromium settings -----------------------------------------------------------
 CHROMIUM_ROOT=${HOME}/Desktop/chromium
 if [[ ! -d ${CHROMIUM_ROOT} ]] ; then
