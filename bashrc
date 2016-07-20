@@ -54,9 +54,6 @@ if [[ $USE_FAKE_DISPLAY -eq 1 ]] ; then
     CUSTOM_DISPLAY="DISPLAY=:4"
 fi
 
-export GYP_GENERATORS=ninja
-export GYP_DEFINES="clang=1 disable_nacl=1 use_goma=1 gomadir=${GOMA_DIR} component=shared_library proprietary_codecs=1 ffmpeg_branding=Chrome"
-
 # Run Tests {Debug, Release}
 alias rtd='${CUSTOM_DISPLAY} ${WEBKIT_HOME}/Tools/Scripts/run-webkit-tests --debug -f --no-retry-failures'
 alias rtr='${CUSTOM_DISPLAY} ${WEBKIT_HOME}/Tools/Scripts/run-webkit-tests --release -f --no-retry-failures'
