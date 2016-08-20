@@ -8,16 +8,24 @@ export HISTCONTROL=ignoredups:erasedups
 export SVN_EDITOR=vi
 export EDITOR=vi
 
+
 # Misc ------------------------------------------------------------------------
+
+# Undo the last commit, "git undolastcommit"
+git config --global --add alias.undolastcommit "reset --soft HEAD~1"
+
+# List branches by date, "git bd"
+git config --global --add alias.bd "! git for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads | sed -e 's-refs/heads/--'"
+
+# Prettier printing of git log, "git lol"
+# Original author is Franz Bettag, http://uberblo.gs/2010/12/git-lol-the-other-git-log
+git config --global --add alias.lol "log --graph --decorate --pretty=oneline --abbrev-commit --all"
+
 # Make subl an alias of sublime on OSX
 if [[ $OSTYPE == *"darwin"* ]]; then
     alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 fi
 
-alias gitundolastcommit='git reset --soft HEAD~1'
-
-# List branches by date
-alias bd="git for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads | sed -e 's-refs/heads/--'"
 
 # Chromium settings -----------------------------------------------------------
 CHROMIUM_ROOT=${HOME}/Desktop/chromium
@@ -64,6 +72,9 @@ alias bad='btd && bcd' # Build all debug
 alias bar='btr && bcr' # Build all release
 alias ba='bcd && bcr && btd && btr' # Build all
 
+# Build alias for an official build.
+alias bco='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Official chrome'
+
 # Build aliases without goma
 alias bcdng='GOMA_DISABLED=true bcd'
 alias bcrng='GOMA_DISABLED=true bcr'
@@ -72,5 +83,3 @@ alias btrng='GOMA_DISABLED=true btr'
 alias badng='btdng && bcdng' # Build all debug, no goma
 alias barng='btrng && bcrng' # Build all release, no goma
 alias bang='GOMA_DISABLED=true ba' # Build all, no goma
-
-alias bco='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Official chrome'
