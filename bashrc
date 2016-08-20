@@ -52,8 +52,8 @@ if [[ $USE_FAKE_DISPLAY -eq 1 ]] ; then
 fi
 
 # Run Tests {Debug, Release}
-alias rtd='${CUSTOM_DISPLAY} ${WEBKIT_HOME}/Tools/Scripts/run-webkit-tests --debug -f --no-retry-failures'
-alias rtr='${CUSTOM_DISPLAY} ${WEBKIT_HOME}/Tools/Scripts/run-webkit-tests --release -f --no-retry-failures'
+alias rtd='${CUSTOM_DISPLAY} ${WEBKIT_HOME}/Tools/Scripts/run-webkit-tests --debug -f'
+alias rtr='${CUSTOM_DISPLAY} ${WEBKIT_HOME}/Tools/Scripts/run-webkit-tests --release -f'
 
 # Build aliases: Build {chromium, tests} {Debug, Release}
 alias bcd='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Debug chrome'
