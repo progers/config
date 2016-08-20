@@ -36,14 +36,11 @@ if [[ ! -d ${GOMA_DIR} ]] ; then
     echo "GOMA_DIR not found, goma may not work."
 fi
 alias restartgoma="${GOMA_DIR}/goma_ctl.py restart"
+
 GOMAJS=220 # How many j's to use for goma
-USE_APIARY=1 # Set to 0 to disable goma's apiary access
-if [[ $USE_APIARY -eq 1 ]] ; then
-    export GOMAMODE=apiary
-    if [[ ! -f ${HOME}/.goma_apiary_key ]] ; then
-        echo "${HOME}/.goma_apiary_key not found, apiary access may not work."
-    fi
-fi
+
+# Use OAUTH for GOMA
+export GOMA_OAUTH2_CONFIG_FILE=$HOME/.goma_oauth2_config
 
 # Display settings for running tests in a terminal
 USE_FAKE_DISPLAY=0 # Set to 1 to use a fake x environment to run tests without a display.
@@ -75,3 +72,5 @@ alias btrng='GOMA_DISABLED=true btr'
 alias badng='btdng && bcdng' # Build all debug, no goma
 alias barng='btrng && bcrng' # Build all release, no goma
 alias bang='GOMA_DISABLED=true ba' # Build all, no goma
+
+alias bco='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Official chrome'
