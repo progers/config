@@ -1,0 +1,24 @@
+{
+    "git.enabled": false,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/LayoutTests": true
+    },
+
+    // Personal preferences.
+    "editor.acceptSuggestionOnEnter": false,
+    "editor.folding": false,
+    "window.reopenFolders": "all",
+    "explorer.openEditors.visible": 100,
+    "window.openFilesInNewWindow": false,
+    "editor.scrollBeyondLastLine": false,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "window.showFullPath": true,
+    "terminal.integrated.scrollback": 10000,
+
+    // Chromium style.
+    "editor.rulers": [80],
+    "editor.tabSize": 2
+}
