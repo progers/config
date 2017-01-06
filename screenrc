@@ -1,3 +1,0 @@
-defscrollback 25000
-# allows for scrollback
-termcapinfo xterm* ti@:te@
