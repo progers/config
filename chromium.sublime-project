@@ -1,0 +1,11 @@
+{
+  "folders":
+  [
+    {
+      "path": "src/third_party/WebKit"
+    },
+    {
+      "path": "src/cc"
+    }
+  ]
+}
