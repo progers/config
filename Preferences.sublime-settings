@@ -1,0 +1,9 @@
+{
+  "rulers": [72, 80],
+  "spell_check": true,
+  "tab_size": 2,
+  "use_tab_stops": false,
+
+  // OSX only.
+  "open_files_in_new_window": false
+}
