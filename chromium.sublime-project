@@ -6,6 +6,9 @@
     },
     {
       "path": "src/cc"
+    },
+    {
+      "path": "src/third_party/blink"
     }
   ]
 }
