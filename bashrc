@@ -33,7 +33,6 @@ if [[ ! -d ${CHROMIUM_ROOT} ]] ; then
         fi
     fi
 fi
-WEBKIT_HOME=${CHROMIUM_ROOT}/src/third_party/WebKit
 export PATH=$PATH:${CHROMIUM_ROOT}/depot_tools
 
 # GOMA settings for cloud compiler
@@ -49,8 +48,8 @@ GOMAJS=300 # How many j's to use for goma
 export GOMA_OAUTH2_CONFIG_FILE=$HOME/.goma_oauth2_config # Use OAUTH for GOMA
 
 # Run Tests {Debug, Release}
-alias rtd='${WEBKIT_HOME}/Tools/Scripts/run-webkit-tests --debug -f'
-alias rtr='${WEBKIT_HOME}/Tools/Scripts/run-webkit-tests --release -f'
+alias rtd='${CHROMIUM_ROOT}/src/third_party/blink/tools/run_web_tests.py --debug -f'
+alias rtr='${CHROMIUM_ROOT}/src/third_party/blink/tools/run_web_tests.py --release -f'
 
 # Build aliases: Build {chromium, tests} {Debug, Release}
 alias bcd='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Debug chrome'
