@@ -9,6 +9,7 @@
 # MacOS   put in ~/.bash_profile
 # Windows put in ~/.bashrc
 
+
 # Terminal settings -----------------------------------------------------------
 # Prompt, looks like: [time]:currentdirectory $ 
 export PS1="[\t]:\w $ "
@@ -61,9 +62,14 @@ export GOMA_OAUTH2_CONFIG_FILE=$HOME/.goma_oauth2_config # Use OAUTH for GOMA
 alias rtd='${CHROMIUM_ROOT}/src/third_party/blink/tools/run_web_tests.py --debug -f'
 alias rtr='${CHROMIUM_ROOT}/src/third_party/blink/tools/run_web_tests.py --release -f'
 
-# Build aliases: Build {chromium, tests} {Debug, Release}
+# Build aliases: Build {chromium, content_shell, webkit_unit_tests, all tests} {Debug, Release}
+# All tests (target blink_tests) includes content_shell and webkit_unit_tests (see: src/BUILD.gn)
 alias bcd='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Debug chrome'
 alias bcr='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Release chrome'
+alias bcsd='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Debug content_shell'
+alias bcsr='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Release content_shell'
+alias bwutd='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Debug webkit_unit_tests'
+alias bwutr='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Release webkit_unit_tests'
 alias btd='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Debug blink_tests'
 alias btr='time ninja -j ${GOMAJS} -C ${CHROMIUM_ROOT}/src/out/Release blink_tests'
 alias bad='btd && bcd' # Build all debug
@@ -73,6 +79,10 @@ alias ba='bcd && bcr && btd && btr' # Build all
 # Build aliases without goma
 alias bcdng='GOMA_DISABLED=true bcd'
 alias bcrng='GOMA_DISABLED=true bcr'
+alias bcsdng='GOMA_DISABLED=true bcsd'
+alias bcsrng='GOMA_DISABLED=true bcsr'
+alias bwutdng='GOMA_DISABLED=true bwutd'
+alias bwutrng='GOMA_DISABLED=true bwutr'
 alias btdng='GOMA_DISABLED=true btd'
 alias btrng='GOMA_DISABLED=true btr'
 alias badng='btdng && bcdng' # Build all debug, no goma
