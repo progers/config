@@ -1,3 +1,14 @@
+# My Bash configuration
+#
+# Installation:
+# Linux   put in ~/.bash_aliases
+#         Ensure the following is in ~/.bashrc:
+#         if [ -f ~/.bash_aliases ]; then
+#           . ~/.bash_aliases
+#         fi
+# MacOS   put in ~/.bash_profile
+# Windows put in ~/.bashrc
+
 # Terminal settings -----------------------------------------------------------
 # Prompt, looks like: [time]:currentdirectory $ 
 export PS1="[\t]:\w $ "
@@ -10,7 +21,6 @@ export EDITOR=vi
 
 
 # Misc ------------------------------------------------------------------------
-
 # Undo the last commit, "git undolastcommit"
 git config --global --add alias.undolastcommit "reset --soft HEAD~1"
 
