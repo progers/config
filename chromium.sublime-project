@@ -1,14 +1,44 @@
 {
-  "folders":
-  [
+  "folders": [
     {
-      "path": "src/third_party/WebKit"
+      "name": "src",
+      "path": "src",
+      "file_exclude_patterns":
+      [
+        "*.vcproj",
+        "*.vcxproj",
+        "*.sln",
+        "*.gitignore",
+        "*.gitmodules",
+        "*.vcxproj.*",
+      ],
+      "folder_exclude_patterns":
+      [
+        "build",
+        "out",
+        "third_party",
+        ".git",
+        "v8",
+        "ui",
+        "buildtools",
+        "net",
+        "ios",
+        "extensions",
+        "components",
+        "ppapi",
+        "native_client",
+        "native_client_sdk",
+        "ash",
+        "media",
+      ],
     },
     {
-      "path": "src/cc"
+      "name": "src/out/Debug/gen",
+      "path": "src/out/Debug/gen",
     },
     {
-      "path": "src/third_party/blink"
-    }
-  ]
+      "name": "src/third_party/blink",
+      "path": "src/third_party/blink",
+    },
+  ],
 }
