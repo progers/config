@@ -41,4 +41,26 @@
       "path": "src/third_party/blink",
     },
   ],
+  "build_systems": [
+    {
+      "name": "blink",
+      "cmd": ["ninja", "-j", "300", "-C", "out/Debug", "blink_tests"],
+      "working_dir": "${project_path}/src",
+      "file_regex": "^[.\\\\/]*([a-z]?:?[\\w.\\\\/]+)[(:]([0-9]+)[,:]?([0-9]+)?[)]?:(.*)$",
+      "variants": [
+        {
+          "name": "cc tests debug",
+          "cmd": ["ninja", "-j", "300", "-C", "out/Debug", "cc_unittests"],
+        },
+        {
+          "name": "chrome debug",
+          "cmd": ["ninja", "-j", "300", "-C", "out/Debug", "chrome"],
+        },
+        {
+          "name": "content shell release",
+          "cmd": ["ninja", "-j", "300", "-C", "out/Release", "content_shell"],
+        },
+      ],
+    },
+  ],
 }
