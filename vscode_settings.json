@@ -1,0 +1,69 @@
+// Workspace settings for Chromium.
+{
+  "git.enabled": false,
+  
+  // Using chromium/src as the root directory includes an enormous
+  // tree. The following excludes hack off large branches that are
+  // not particularly useful for a blink/webkit developer.
+  "files.exclude": {
+    "out": true,
+    "content": true,
+    "native_client": true,
+    "native_client_sdk": true,
+    "clank": true,
+    "chrome": true,
+    "build": true,
+    "buildtools": true,
+    "v8": true,
+    "tools": true,
+    "ui": true,
+    "components": true,
+    "ppapi": true,
+    "remoting": true,
+    "third_party/webgl": true,
+    "third_party/webrtc": true,
+    "third_party/swiftshader": true,
+    "third_party/pdfium": true,
+    "third_party/depot_tools": true,
+    "third_party/catapult": true,
+    "third_party/boringssl": true,
+    "third_party/angle": true,
+    "third_party/ffmpeg": true,
+    "third_party/icu": true,
+    "third_party/mesa": true,
+    "third_party/perl": true,
+    "third_party/skia": true,
+    "third_party/vulkan-validation-layers": true,
+    "ios": true,
+    "extensions": true,
+    "net": true
+  },
+
+  // Personal preferences.
+  "editor.acceptSuggestionOnEnter": "smart",
+  "editor.folding": false,
+  "explorer.openEditors.visible": 100,
+  "editor.scrollBeyondLastLine": false,
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.cursorBlinking": true,
+  "editor.minimap.enabled": false,
+  "editor.detectIndentation": false,
+  "workbench.colorTheme": "Visual Studio Light",
+  "typescript.check.npmIsInstalled": false,
+  "workbench.statusBar.visible": true,
+  "workbench.activityBar.visible": false,
+  "window.zoomLevel": 0,
+
+  // Chromium style.
+  "editor.rulers": [72, 80],
+  "editor.tabSize": 2,
+
+  // YouCompleteMe settings for the you-complete-me extension by RichardHe.
+  "ycmd.path": "/Users/pdr/ycm/third_party/ycmd",
+  "ycmd.global_extra_config": "/Users/pdr/Desktop/chromium/src/tools/vim/chromium.ycm_extra_conf.py",
+  "ycmd.confirm_extra_conf": false,
+  "ycmd.use_imprecise_get_type": true,
+  "ycmd.debug": true
+}
