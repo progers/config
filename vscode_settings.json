@@ -3,9 +3,10 @@
   "git.enabled": false,
   
   // Using chromium/src as the root directory includes an enormous
-  // tree. The following excludes hack off large branches that are
-  // not particularly useful for a blink/webkit developer.
+  // tree. The following excludes large branches that are not
+  // particularly useful for a blink/webkit developer.
   "files.exclude": {
+    // This excludes out/Debug/gen/ :/
     "out": true,
     "content": true,
     "native_client": true,
@@ -16,7 +17,6 @@
     "buildtools": true,
     "v8": true,
     "tools": true,
-    "ui": true,
     "components": true,
     "ppapi": true,
     "remoting": true,
@@ -39,30 +39,42 @@
     "net": true
   },
 
-  // Personal preferences.
+  // Personal preferences for Chromium. Some of these are inspired by:
+  // https://cs.chromium.org/chromium/src/tools/vscode/settings.json5
+  "workbench.colorTheme": "Visual Studio Light",
+  "workbench.statusBar.visible": true,
+  "workbench.activityBar.visible": false,
+  "window.zoomLevel": 0,
+  // Selection resets the initial find search string which differs from sublime.
+  "editor.find.seedSearchStringFromSelection": false,
   "editor.acceptSuggestionOnEnter": "smart",
   "editor.folding": false,
   "explorer.openEditors.visible": 100,
   "editor.scrollBeyondLastLine": false,
+  // The preview feature differs from sublime and I found it got in the way.
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "terminal.integrated.scrollback": 10000,
-  "terminal.integrated.cursorBlinking": true,
   "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
-  "workbench.colorTheme": "Visual Studio Light",
-  "typescript.check.npmIsInstalled": false,
-  "workbench.statusBar.visible": true,
-  "workbench.activityBar.visible": false,
-  "window.zoomLevel": 0,
-
-  // Chromium style.
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.cursorBlinking": true,
   "editor.rulers": [72, 80],
   "editor.tabSize": 2,
 
+  "files.associations": {
+    // Adds xml syntax highlighting for grd files.
+    "*.grd" : "xml",
+    // Optional: .gn and .gni are not JavaScript, but at least it gives some
+    // approximate syntax highlighting. Ignore the linter warnings!
+    "*.gni" : "javascript",
+    "*.gn" : "javascript"
+  },
+
   // YouCompleteMe settings for the you-complete-me extension by RichardHe.
+  // linux: "ycmd.path": "/usr/local/google/home/pdr/ycmd",
+  // mac: "ycmd.path": "/Users/pdr/ycm/third_party/ycmd",
   "ycmd.path": "/Users/pdr/ycm/third_party/ycmd",
-  "ycmd.global_extra_config": "/Users/pdr/Desktop/chromium/src/tools/vim/chromium.ycm_extra_conf.py",
+  "ycmd.global_extra_config": "tools/vim/chromium.ycm_extra_conf.py",
   "ycmd.confirm_extra_conf": false,
   "ycmd.use_imprecise_get_type": true,
   "ycmd.debug": true
