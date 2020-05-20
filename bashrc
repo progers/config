@@ -52,15 +52,10 @@ fi
 export PATH=$PATH:${CHROMIUM_ROOT}/depot_tools
 
 # GOMA settings for cloud compiler
-GOMA_CTL=${HOME}/goma/goma_ctl.py
-if [[ ! -e ${GOMA_CTL} ]] ; then
-    GOMA_CTL=/c/goma/goma-win64/goma_ctl.bat
-    if [[ ! -e ${GOMA_CTL} ]] ; then
-        echo "goma_ctl not found, goma may not work."
-    fi
+if [[ ! -e goma_ctl ]] ; then
+    echo "goma_ctl not found, goma may not work."
 fi
-alias restartgoma="${GOMA_CTL} restart"
-export GOMA_OAUTH2_CONFIG_FILE=$HOME/.goma_oauth2_config # Use OAUTH for GOMA
+alias restartgoma="goma_ctl restart"
 
 # Run Tests {Debug, Release}
 alias rtd='${CHROMIUM_ROOT}/src/third_party/blink/tools/run_web_tests.py --debug -f'
