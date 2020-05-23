@@ -52,7 +52,7 @@ fi
 export PATH=$PATH:${CHROMIUM_ROOT}/depot_tools
 
 # GOMA settings for cloud compiler
-if [[ ! -e goma_ctl ]] ; then
+if [[ ! -x "$(command -v goma_ctl)" ]] ; then
     echo "goma_ctl not found, goma may not work."
 fi
 alias restartgoma="goma_ctl restart"
