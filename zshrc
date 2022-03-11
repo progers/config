@@ -1,6 +1,8 @@
 # My zsh configuration
 #
 # Installation: put in ~/.zshrc
+#
+# To make zsh the default shell, run: chsh -s /bin/zsh
 
 # Terminal settings -----------------------------------------------------------
 # Prompt, looks like: [time]:currentdirectory %
