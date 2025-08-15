@@ -31,12 +31,6 @@ git config --global --add alias.bd "! git for-each-ref --sort='-authordate:iso86
 # Original author is Franz Bettag, http://uberblo.gs/2010/12/git-lol-the-other-git-log
 git config --global --add alias.lol "log --graph --decorate --pretty=oneline --abbrev-commit --all"
 
-# Make subl an alias of sublime on MacOS
-if [[ $OSTYPE == *"darwin"* ]]; then
-    alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-fi
-
-
 # Chromium settings -----------------------------------------------------------
 CHROMIUM_ROOT=${HOME}/Desktop/chromium
 export PATH=$PATH:${CHROMIUM_ROOT}/depot_tools
@@ -57,13 +51,13 @@ alias bad='btd && bcd' # Build all debug
 alias bar='btr && bcr' # Build all release
 alias ba='bcd && bcr && btd && btr' # Build all
 
-# Build aliases without goma
-alias bcdng='GOMA_DISABLED=true bcd'
-alias bcrng='GOMA_DISABLED=true bcr'
-alias bcsdng='GOMA_DISABLED=true bcsd'
-alias bcsrng='GOMA_DISABLED=true bcsr'
-alias btdng='GOMA_DISABLED=true btd'
-alias btrng='GOMA_DISABLED=true btr'
-alias badng='btdng && bcdng' # Build all debug, no goma
-alias barng='btrng && bcrng' # Build all release, no goma
-alias bang='GOMA_DISABLED=true ba' # Build all, no goma
+# Build aliases for offline
+alias bcdo='time autoninja --offline -C ${CHROMIUM_ROOT}/src/out/Debug chrome'
+alias bcro='time autoninja --offline -C ${CHROMIUM_ROOT}/src/out/Release chrome'
+alias bcsdo='time autoninja --offline -C ${CHROMIUM_ROOT}/src/out/Debug content_shell'
+alias bcsro='time autoninja --offline -C ${CHROMIUM_ROOT}/src/out/Release content_shell'
+alias btdo='time autoninja --offline -C ${CHROMIUM_ROOT}/src/out/Debug blink_tests cc_unittests'
+alias btro='time autoninja --offline -C ${CHROMIUM_ROOT}/src/out/Release blink_tests cc_unittests'
+alias bado='btdo && bcdo' # Build all debug
+alias baro='btro && bcro' # Build all release
+alias bao='bcdo && bcro && btdo && btro' # Build all
