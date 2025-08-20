@@ -35,9 +35,38 @@ git config --global --add alias.lol "log --graph --decorate --pretty=oneline --a
 CHROMIUM_ROOT=${HOME}/Desktop/chromium
 export PATH=$PATH:${CHROMIUM_ROOT}/depot_tools
 
+# Runs a command with the macOS Crash Reporter temporarily disabled.
+# Automatically and safely re-enables the reporter afterward, even if
+# the command is interrupted (e.g., with Ctrl+C). This is an alternative
+# to the `strip` command recommended in
+# https://chromium.googlesource.com/chromium/src/+/HEAD/docs/testing/web_tests.md#initial-setup
+# but, unlike `strip`, this retains debug symbols.
+# Usage: no_crash_reporter <command_to_run>
+no_crash_reporter() {
+  # Requires the zsh/zutil module for the try...always block.
+  zmodload zsh/zutil
+  {
+    if [[ $# -eq 0 ]]; then
+      echo "Usage: no_crash_reporter <command_to_run ...>"
+      return 1
+    fi
+    # Disable the crash reporter.
+    defaults write com.apple.CrashReporter DialogType none || {
+      echo "🚫 no_crash_reporter error: Could not disable crash reporter. Fix with:" >&2
+      echo "  sudo chown \$(whoami) ~/Library/Preferences/com.apple.CrashReporter.plist" >&2
+      echo "Continuing without disabling the crash reporter..."
+    }
+    # Execute the command passed to the function.
+    "$@"
+  } always {
+    # This block is guaranteed to run, restoring the default setting.
+    defaults delete com.apple.CrashReporter DialogType
+  }
+}
+
 # Run Tests {Debug, Release}
-alias rtd='${CHROMIUM_ROOT}/src/third_party/blink/tools/run_web_tests.py --debug -f'
-alias rtr='${CHROMIUM_ROOT}/src/third_party/blink/tools/run_web_tests.py --release -f'
+alias rtd='no_crash_reporter ${CHROMIUM_ROOT}/src/third_party/blink/tools/run_web_tests.py --debug -f --no-retry-failures'
+alias rtr='no_crash_reporter ${CHROMIUM_ROOT}/src/third_party/blink/tools/run_web_tests.py --release -f --no-retry-failures'
 
 # Build aliases: Build {chromium, content_shell, blink_unit_tests, all tests} {Debug, Release}
 # All tests (target blink_tests) includes content_shell and blink_unittests (see: src/BUILD.gn)
